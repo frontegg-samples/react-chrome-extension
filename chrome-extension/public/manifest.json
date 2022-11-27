@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Frontegg chrome extension",
+  "description": "An example of how to use Frontegg login with chrome extension",
+  "version": "1.0",
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "frontegg.png"
+  },
+  "icons": {
+    "16": "frontegg.png",
+    "48": "frontegg.png",
+    "128": "frontegg.png"
+  }
+}
