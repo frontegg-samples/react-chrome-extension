@@ -1,28 +1,34 @@
 import './App.css';
-import { useEffect } from 'react';
-import { useAuth, useLoginWithRedirect } from '@frontegg/react';
+import { useAuth } from '@frontegg/react';
+import { useNavigate } from 'react-router-dom';
 
 function App() {
-  const { user, isAuthenticated } = useAuth();
-  const loginWithRedirect = useLoginWithRedirect();
+  const { isAuthenticated } = useAuth();
+  let navigate = useNavigate();
+  const handleLogout = () => {
+    // if you are using hosted login box change the value to 'oauth/account/logout'
+    navigate("/account/logout");
+  };
 
-  useEffect(() => {
-    if (!isAuthenticated) {
-      loginWithRedirect();
-    }
-  }, [isAuthenticated, loginWithRedirect]);
+  return (
+    <div>
+      {isAuthenticated && (
+        <>
+          <span>
+            You are authenticated, you can close this tab and open the extension
+          </span>
+          <div>
+            <button onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
+        </>
+      )}
+    </div>
+  );
 
-  useEffect(() => {
-    if (!isAuthenticated) {
-      chrome.runtime.sendMessage({done: true}, () => {
-        console.log('message sent')
-      });
-    }
-  }, [isAuthenticated]);
 
-  return <span>
-    You are authenticated, you can close this tab and open the extension
-  </span>
+
 }
 
 export default App;

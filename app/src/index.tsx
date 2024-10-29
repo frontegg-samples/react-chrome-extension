@@ -1,18 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import ReactDOM from 'react-dom/client'
+import './index.css'
 import { FronteggProvider } from '@frontegg/react';
+import App from './App';
+
 
 const contextOptions = {
-  baseUrl: 'https://samples-demo.frontegg.com',
-  clientId: '2e53360e-517e-4c38-a040-ba0e8639f2c7',
+  baseUrl: 'Change to your own BaseURL',
+  clientId: 'Change to your own ClientId',
+  appId: 'Change to your own AppId',
 };
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <FronteggProvider contextOptions={contextOptions} hostedLoginBox={true}>
-    <App />
+
+const authOptions = {
+  keepSessionAlive: true, 
+  enableSessionPerTenant: true,
+  disableSilentRefresh: true,
+};
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <FronteggProvider 
+  contextOptions={contextOptions} 
+  // if you are using hosted login box change the value of hostedLoginBox to true
+  hostedLoginBox={false}
+  entitlementsOptions={{ enabled: true }}
+  authOptions={authOptions}>
+      <App />
   </FronteggProvider>,
 );
