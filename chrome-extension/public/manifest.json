@@ -7,6 +7,15 @@
     "default_popup": "index.html",
     "default_icon": "frontegg.png"
   },
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "*://*.frontegg.com/*",
+    "identity"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; connect-src https://app-5kbz9q5ujm4z.frontegg.com chrome-extension://gefhiophdfkhgeaclilcmopepjjfcmco"
+  },
   "icons": {
     "16": "frontegg.png",
     "48": "frontegg.png",

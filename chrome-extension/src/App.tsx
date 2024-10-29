@@ -1,28 +1,28 @@
-import React, { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import {
   FronteggStoreProvider,
 } from '@frontegg/react-hooks';
 import { FronteggApp } from '@frontegg/js';
-import { api, ContextHolder, ContextOptions } from '@frontegg/rest-api';
+import { ContextHolder, ContextOptions, createApiClient } from '@frontegg/rest-api';
 import Login from './Login';
 
-
 const contextOptions: ContextOptions = {
-  baseUrl: 'https://samples-demo.frontegg.com',
-  clientId: '2e53360e-517e-4c38-a040-ba0e8639f2c7',
+  baseUrl: 'Change to your own BaseURL',
+  clientId: 'Change to your own ClientId',
   requestCredentials: 'include',
 };
-ContextHolder.setContext(contextOptions);
+
+ContextHolder.for('“ApplicationName”').setContext(contextOptions);
 
 const fronteggApp: FronteggApp = new FronteggApp({
   contextOptions,
-  hostedLoginBox: true,
+  hostedLoginBox: false,
 }, 'default');
 
 
 function App() {
   useEffect(() => {
-    api.auth.silentOAuthRefreshToken().then((user) => {
+    createApiClient('“ApplicationName”').auth.refreshTokenV3().then((user) => {
       fronteggApp?.store.dispatch({
         type: 'auth/setState', payload: {
           isLoading: false,

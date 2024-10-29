@@ -1,7 +1,7 @@
 import { useAuthUserOrNull } from '@frontegg/react-hooks';
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 
-const APP_URL = 'http:/localhost:3000';
+const APP_URL = 'change to your own app url';
 
 const Login = () => {
   const user = useAuthUserOrNull();
@@ -18,7 +18,7 @@ const Login = () => {
         Welcome {user.name}, you are authenticated
       </div>
       <div>
-        <img src={user.profilePictureUrl} style={{ width: '50px', height: '50px', borderRadius: '25px' }}/>
+        <img className='card-img' src={user?.profilePictureUrl || undefined} alt={user?.name} />
       </div>
     </div>;
   }
