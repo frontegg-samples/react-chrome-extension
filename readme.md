@@ -49,6 +49,7 @@ go to Env settings -> Domains -> Allowed Origins then add your extension's origi
 
 
 ### Usage:
+* Run chrome-extension by using ```npm run dev```
 * Open your extension
 * Click on the ```click me to login``` button
 * A new tab with the login box will be opened, you should login with your credentials, then, after a successful login you will see a logout button and the following message:  
